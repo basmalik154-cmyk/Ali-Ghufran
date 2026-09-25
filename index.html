@@ -10,13 +10,13 @@
     <!-- تحميل مكتبة Tailwind CSS للتنسيق -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- خطوط جوجل: خط أميري للنصوص الكلاسيكية، وخط كايرو للتفاصيل -->
+    <!-- خطوط جوجل -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- أيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- إعدادات الألوان الملكية (أسود، ذهبي، عنابي) -->
+    <!-- إعدادات الألوان (الأسود، الذهبي، العنابي) -->
     <script>
         tailwind.config = {
             theme: {
@@ -123,18 +123,6 @@
         .reveal-element.active {
             opacity: 1; transform: translateY(0);
         }
-
-        /* زر الموسيقى العائم */
-        .music-float-btn {
-            position: fixed; bottom: 2rem; right: 2rem; z-index: 50;
-            width: 55px; height: 55px; border-radius: 50%;
-            background: radial-gradient(circle, #1a1a1a, #050505);
-            border: 2px solid #D4AF37;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .music-float-btn.playing i { animation: spin 4s linear infinite; }
 
         /* الأزرار الفخمة */
         .btn-luxury {
@@ -307,16 +295,6 @@
         </section>
     </main>
 
-    <!-- مشغل الموسيقى -->
-    <button id="music-toggle" class="music-float-btn hidden" onclick="toggleAudio()">
-        <i class="fa-solid fa-music text-gold-400 text-xl"></i>
-    </button>
-    
-    <audio id="bg-audio" loop preload="auto" crossorigin="anonymous">
-        <source src="https://ia800504.us.archive.org/33/items/canon-in-d_202208/Canon%20in%20D.mp3" type="audio/mpeg">
-        <source src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Canon_in_D_Major_-_Kevin_MacLeod.ogg" type="audio/ogg">
-    </audio>
-
     <!-- مكتبة الجزيئات -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
@@ -343,18 +321,13 @@
         function openInvitation() {
             const splashScreen = document.getElementById('splash-screen');
             const mainContent = document.getElementById('main-content');
-            const musicBtn = document.getElementById('music-toggle');
             
             // رفع الشاشة لأعلى
             splashScreen.style.transform = 'translateY(-100vh)';
             
-            // تشغيل الموسيقى
-            toggleAudio(true);
-            
             setTimeout(() => {
                 splashScreen.style.display = 'none';
                 mainContent.style.display = 'flex';
-                musicBtn.style.display = 'flex';
                 
                 initParticles();
                 
@@ -378,29 +351,6 @@
                 });
             }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
             reveals.forEach(reveal => observer.observe(reveal));
-        }
-
-        // التحكم بالصوت
-        const audio = document.getElementById('bg-audio');
-        const musicBtn = document.getElementById('music-toggle');
-        let isPlaying = false;
-
-        function toggleAudio(forcePlay = false) {
-            if (forcePlay || !isPlaying) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    musicBtn.classList.add('playing');
-                    musicBtn.innerHTML = '<i class="fa-solid fa-volume-high text-gold-400 text-xl"></i>';
-                }).catch(err => {
-                    console.log("Audio play blocked", err);
-                    isPlaying = false;
-                });
-            } else {
-                audio.pause();
-                isPlaying = false;
-                musicBtn.classList.remove('playing');
-                musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark text-gray-500 text-xl"></i>';
-            }
         }
 
         // العداد التنازلي
