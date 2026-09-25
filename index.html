@@ -1,0 +1,579 @@
+
+
+‏<!DOCTYPE html>
+‏<html lang="ar" dir="rtl">
+‏<head>
+‏    <meta charset="UTF-8">
+‏    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+‏    <title>دعوة زفاف - الدكتور علي والدكتورة غفران</title>
+    
+    <!-- تحميل مكتبة Tailwind CSS للتنسيق السريع والمستجيب -->
+‏    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- خطوط جوجل: خط أميري للنصوص الكلاسيكية والفخمة، وخط كايرو للتفاصيل -->
+‏    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- أيقونات FontAwesome -->
+‏    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- إعدادات Tailwind المخصصة للألوان الملكية المطلوبة -->
+‏    <script>
+‏        tailwind.config = {
+‏            theme: {
+‏                extend: {
+‏                    colors: {
+                        /* تدرجات الذهبي الملكي */
+‏                        gold: {
+‏                            100: '#FDF7E7',
+‏                            200: '#F8E9C0',
+‏                            300: '#F0D48D',
+‏                            400: '#E6BC5A',
+‏                            500: '#D4AF37', /* اللون الذهبي الرئيسي (Metallic Gold) */
+‏                            600: '#B5952F',
+                            700: '#917726',
+‏                            800: '#735E1E',
+‏                            900: '#5C4B18',
+‏                            DEFAULT: '#D4AF37',
+                        },
+                        /* تدرجات الأحمر العنابي (الداكن) للفخامة */
+‏                        burgundy: {
+                            500: '#800020',
+                            600: '#660019',
+‏                            700: '#4d0013',
+‏                            DEFAULT: '#800020',
+                        },
+                        /* الأسود العميق للخلفية */
+‏                        obsidian: {
+‏                            DEFAULT: '#0a0a0a',
+‏                            light: '#141414',
+‏                            lighter: '#1f1f1f'
+                        }
+                    },
+‏                    fontFamily: {
+‏                        amiri: ['Amiri', 'serif'],
+‏                        cairo: ['Cairo', 'sans-serif'],
+                    },
+‏                    animation: {
+‏                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+‏                        'float': 'float 4s ease-in-out infinite',
+‏                        'spin-slow': 'spin 5s linear infinite',
+‏                        'fadeIn': 'fadeIn 1.5s ease-out forwards',
+‏                        'slideUp': 'slideUp 1s ease-out forwards',
+                    },
+‏                    keyframes: {
+‏                        float: {
+‏                            '0%, 100%': { transform: 'translateY(0)' },
+‏                            '50%': { transform: 'translateY(-15px)' },
+                        },
+‏                        fadeIn: {
+‏                            '0%': { opacity: '0' },
+‏                            '100%': { opacity: '1' },
+                        },
+‏                        slideUp: {
+‏                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+‏                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+‏    </script>
+
+‏    <style>
+        /* التنسيقات العامة والخلفية */
+‏        body {
+‏            background-color: #0a0a0a; /* أسود عميق */
+‏            color: #FDF7E7; /* نص فاتح جداً مائل للذهبي */
+‏            overflow-x: hidden;
+            /* إضافة نقوش زخرفية خفيفة جداً في الخلفية لتجنب السواد المصمت */
+‏            background-image: radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 70%);
+‏            background-attachment: fixed;
+        }
+
+        /* حاوية الجزيئات الذهبية المتطايرة */
+‏        #particles-js {
+‏            position: fixed;
+‏            width: 100%;
+‏            height: 100%;
+‏            top: 0;
+‏            left: 0;
+‏            z-index: 0;
+‏            pointer-events: none;
+        }
+
+        /* تنسيق البطاقات الزجاجية الداكنة الفخمة (Dark Glassmorphism) */
+‏        .glass-card {
+‏            background: linear-gradient(135deg, rgba(25, 25, 25, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+‏            backdrop-filter: blur(12px);
+‏            -webkit-backdrop-filter: blur(12px);
+‏            border: 1px solid rgba(212, 175, 55, 0.2); /* إطار ذهبي خفيف */
+‏            border-top: 1px solid rgba(212, 175, 55, 0.4);
+‏            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+‏            position: relative;
+‏            z-index: 10;
+        }
+
+        /* لمعان خفيف عند زوايا البطاقات */
+‏        .glass-card::before {
+‏            content: '';
+‏            position: absolute;
+‏            top: 0;
+‏            left: 0;
+‏            right: 0;
+‏            height: 1px;
+‏            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent);
+‏            z-index: 11;
+        }
+
+        /* نصوص متوهجة باللون الذهبي */
+‏        .text-glow-gold {
+‏            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        
+‏        .text-glow-burgundy {
+‏            text-shadow: 0 0 15px rgba(128, 0, 32, 0.6);
+        }
+
+        /* خطوط الزخرفة الفاصلة (Divider) */
+‏        .divider {
+‏            display: flex;
+‏            align-items: center;
+‏            text-align: center;
+‏            margin: 1.5rem 0;
+        }
+‏        .divider::before, .divider::after {
+‏            content: '';
+‏            flex: 1;
+‏            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+‏        .divider::before { margin-left: .75em; }
+‏        .divider::after { margin-right: .75em; }
+
+        /* تأثيرات الظهور عند التمرير (Scroll Reveal) */
+‏        .reveal-element {
+‏            opacity: 0;
+‏            transform: translateY(40px);
+‏            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+‏        .reveal-element.active {
+‏            opacity: 1;
+‏            transform: translateY(0);
+        }
+
+        /* زر الموسيقى العائم */
+‏        .music-float-btn {
+‏            position: fixed;
+‏            bottom: 2rem;
+‏            right: 2rem;
+‏            z-index: 50;
+‏            width: 55px;
+‏            height: 55px;
+‏            border-radius: 50%;
+‏            background: radial-gradient(circle, #2a2a2a, #111);
+‏            border: 2px solid #D4AF37;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+‏            cursor: pointer;
+‏            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+‏        .music-float-btn:hover {
+‏            transform: scale(1.1);
+‏            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+‏        .music-float-btn.playing i {
+‏            animation: spin 4s linear infinite;
+        }
+
+        /* تنسيق الأزرار الرئيسية */
+‏        .btn-luxury {
+‏            background: linear-gradient(135deg, #800020 0%, #4d0013 100%); /* أحمر عنابي */
+‏            border: 1px solid #D4AF37;
+‏            color: #FDF7E7;
+‏            position: relative;
+‏            overflow: hidden;
+‏            transition: all 0.4s ease;
+‏            box-shadow: 0 4px 15px rgba(128, 0, 32, 0.4);
+        }
+‏        .btn-luxury::before {
+‏            content: '';
+‏            position: absolute;
+‏            top: 0;
+‏            left: -100%;
+‏            width: 100%;
+‏            height: 100%;
+‏            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+‏            transition: all 0.5s ease;
+        }
+‏        .btn-luxury:hover {
+‏            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+‏            transform: translateY(-2px);
+        }
+‏        .btn-luxury:hover::before {
+‏            left: 100%;
+        }
+
+        /* زر الموقع الخاص (أسود وذهبي) */
+‏        .btn-outline-gold {
+‏            background: transparent;
+‏            border: 1px solid #D4AF37;
+‏            color: #D4AF37;
+‏            transition: all 0.3s ease;
+        }
+‏        .btn-outline-gold:hover {
+‏            background: rgba(212, 175, 55, 0.1);
+‏            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* إطار زخرفي للبطاقة الرئيسية */
+‏        .ornate-border {
+‏            position: relative;
+‏            padding: 2.5rem;
+‏            border-radius: 1.5rem;
+        }
+‏        .ornate-border::after {
+‏            content: '';
+‏            position: absolute;
+‏            top: 10px; left: 10px; right: 10px; bottom: 10px;
+‏            border: 1px dashed rgba(212, 175, 55, 0.4);
+‏            border-radius: 1rem;
+‏            pointer-events: none;
+        }
+
+        /* شاشة التحميل الافتتاحية */
+‏        #splash-screen {
+‏            position: fixed;
+‏            inset: 0;
+‏            background-color: #0a0a0a;
+‏            z-index: 9999;
+‏            display: flex;
+‏            flex-direction: column;
+‏            align-items: center;
+‏            justify-content: center;
+‏            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+‏            background-image: radial-gradient(circle at 50% 50%, #1f1f1f 0%, #0a0a0a 80%);
+        }
+‏    </style>
+‏</head>
+‏<body class="font-cairo text-gold-100 antialiased selection:bg-gold-500 selection:text-black">
+
+‏    <div id="particles-js"></div>
+
+‏    <div id="splash-screen">
+‏        <div class="animate-float mb-8 relative">
+            <!-- أيقونة خواتم متشابكة تعبر عن الزواج (لون ذهبي) -->
+‏            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" class="filter drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">
+‏                <circle cx="8" cy="12" r="5"></circle>
+‏                <circle cx="16" cy="12" r="5"></circle>
+‏                <path d="M12 7l1.5-2h-3L12 7z" fill="#D4AF37" opacity="0.4"></path>
+‏                <path d="M11 15a5 5 0 0 0 2 0"></path>
+‏            </svg>
+‏        </div>
+        
+‏        <h1 class="font-amiri text-5xl text-gold-500 mb-3 font-bold text-glow-gold tracking-wider text-center">دَعْوَة زِفَاف</h1>
+‏        <p class="text-gold-200 mb-12 font-amiri text-2xl opacity-80">الدكتور علي & الدكتورة غفران</p>
+        
+        <!-- زر فتح الدعوة يجمع بين العنابي والذهبي -->
+‏        <button onclick="openInvitation()" class="btn-luxury px-12 py-4 rounded-full font-cairo shadow-lg flex items-center gap-4 group">
+‏            <span class="font-bold text-xl tracking-wide">افتح الدعوة</span>
+‏            <i class="fa-regular fa-envelope-open text-gold-300 group-hover:scale-110 transition-transform"></i>
+‏        </button>
+‏    </div>
+
+‏    <main id="main-content" class="max-w-lg mx-auto px-5 py-12 hidden opacity-0 flex-col gap-8 pb-32 relative z-10">
+        
+        <!-- البطاقة الرئيسية: الآية، الترحيب والأسماء -->
+‏        <section class="glass-card ornate-border text-center reveal-element">
+            <!-- الآية القرآنية في الأعلى -->
+‏            <div class="mb-8">
+‏                <h3 class="font-amiri text-gold-400 text-2xl md:text-3xl mb-4 font-bold text-glow-gold tracking-wide">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h3>
+‏                <p class="font-amiri text-gold-200 text-lg md:text-xl leading-relaxed text-glow-gold px-2">
+                    "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
+‏                </p>
+‏                <p class="font-amiri text-gold-400 text-sm md:text-base mt-4 opacity-90">
+                    صَدَقَ اللهُ العَلِيُّ العَظِيمُ
+‏                </p>
+‏            </div>
+            
+‏            <div class="divider text-burgundy-500"><i class="fa-solid fa-heart text-xs"></i></div>
+            
+            <!-- النصوص المنقولة من الصورة -->
+‏            <p class="font-amiri text-2xl text-gold-200 mb-4 font-bold">مرحباً بكم في أجمل أيامنا</p>
+‏            <p class="font-cairo text-gray-300 text-sm md:text-base mb-8">يسعدنا ويشرفنا دعوتكم لحضور حفل زفاف</p>
+            
+            <!-- أسماء العرسان بارزة -->
+‏            <h1 class="font-amiri text-5xl text-gold-500 mb-4 font-bold text-glow-gold">الدكتور علي</h1>
+‏            <div class="flex items-center justify-center gap-4 my-2">
+‏                <div class="w-12 h-[1px] bg-gradient-to-r from-transparent to-gold-500"></div>
+‏                <span class="font-amiri text-3xl text-burgundy-500 font-bold text-glow-burgundy">&</span>
+‏                <div class="w-12 h-[1px] bg-gradient-to-l from-transparent to-gold-500"></div>
+‏            </div>
+‏            <h1 class="font-amiri text-5xl text-gold-500 mt-4 mb-8 font-bold text-glow-gold">الدكتورة غفران</h1>
+            
+‏            <div class="divider text-burgundy-500"><i class="fa-solid fa-heart text-xs"></i></div>
+            
+‏            <p class="font-cairo text-gray-300 text-sm md:text-base">
+                وتتمنى مشاركتكم فرحتنا ودعواتكم الصادقة<br>في يوم من أجمل أيام العمر
+‏            </p>
+‏        </section>
+
+        <!-- البطاقة الثانية: تفاصيل الزمان والمكان (من الصورة) -->
+‏        <section class="glass-card rounded-2xl p-6 text-center reveal-element">
+            
+‏            <div class="grid grid-cols-3 gap-2 md:gap-4 mb-4 items-start">
+                
+                <!-- الساعة -->
+‏                <div class="flex flex-col items-center p-3">
+‏                    <div class="w-12 h-12 rounded-full border border-gold-600/50 flex items-center justify-center mb-3 bg-obsidian-light shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+‏                        <i class="fa-regular fa-clock text-gold-400 text-xl"></i>
+‏                    </div>
+‏                    <p class="font-bold text-gold-200 mb-1 font-amiri text-lg">الساعة</p>
+‏                    <p class="text-gray-400 text-xs md:text-sm leading-tight">من 4:00<br>إلى 7:00 مساءً</p>
+‏                </div>
+                
+                <!-- التاريخ (في المنتصف) -->
+‏                <div class="flex flex-col items-center p-3 border-x border-gold-800/30">
+‏                    <div class="w-12 h-12 rounded-full border border-gold-600/50 flex items-center justify-center mb-3 bg-obsidian-light shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+‏                        <i class="fa-regular fa-calendar-alt text-gold-400 text-xl"></i>
+‏                    </div>
+‏                    <p class="font-bold text-gold-200 mb-1 font-amiri text-lg">التاريخ</p>
+‏                    <p class="text-gray-400 text-xs md:text-sm leading-tight" dir="ltr">2026/9/27<br><span dir="rtl">يوم الأحد</span></p>
+‏                </div>
+                
+                <!-- المكان -->
+‏                <div class="flex flex-col items-center p-3">
+‏                    <div class="w-12 h-12 rounded-full border border-gold-600/50 flex items-center justify-center mb-3 bg-obsidian-light shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+‏                        <i class="fa-solid fa-location-dot text-gold-400 text-xl"></i>
+‏                    </div>
+‏                    <p class="font-bold text-gold-200 mb-1 font-amiri text-lg">المكان</p>
+‏                    <p class="text-gray-400 text-xs md:text-sm leading-tight">قاعة المدهش<br>VIP2</p>
+‏                </div>
+‏            </div>
+
+‏            <div class="mt-4 flex flex-col gap-3">
+                <!-- زر عرض الخريطة (Google Maps) -->
+‏                <a href="https://maps.app.goo.gl/grFft9kAJtMmYiiQ7?g_st=ic" target="_blank" class="btn-outline-gold w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+‏                    <i class="fa-solid fa-map-location-dot"></i> عرض موقع القاعة على الخريطة
+‏                </a>
+‏            </div>
+‏        </section>
+
+        <!-- البطاقة الثالثة: العداد التنازلي -->
+‏        <section class="glass-card rounded-2xl p-8 text-center reveal-element">
+‏            <h2 class="font-amiri text-2xl text-gold-400 mb-8 font-bold">بانتظار اللحظة الأجمل</h2>
+            
+‏            <div class="flex justify-center gap-2 md:gap-4" dir="ltr">
+                <!-- الأيام -->
+‏                <div class="flex flex-col items-center">
+‏                    <div class="w-14 h-16 md:w-16 md:h-20 bg-obsidian-light border border-gold-700/50 rounded-lg flex items-center justify-center shadow-inner relative overflow-hidden">
+‏                        <div class="absolute top-0 left-0 w-full h-1/2 bg-white/5 border-b border-white/5"></div>
+‏                        <span id="days" class="text-2xl md:text-3xl font-bold text-gold-300 font-cairo z-10">00</span>
+‏                    </div>
+‏                    <span class="text-xs text-gray-400 mt-2 font-cairo font-semibold">يوم</span>
+‏                </div>
+                
+‏                <span class="text-burgundy-500 text-2xl mt-4 font-bold animate-pulse">:</span>
+                
+                <!-- الساعات -->
+‏                <div class="flex flex-col items-center">
+‏                    <div class="w-14 h-16 md:w-16 md:h-20 bg-obsidian-light border border-gold-700/50 rounded-lg flex items-center justify-center shadow-inner relative overflow-hidden">
+‏                        <div class="absolute top-0 left-0 w-full h-1/2 bg-white/5 border-b border-white/5"></div>
+‏                        <span id="hours" class="text-2xl md:text-3xl font-bold text-gold-300 font-cairo z-10">00</span>
+‏                    </div>
+‏                    <span class="text-xs text-gray-400 mt-2 font-cairo font-semibold">ساعة</span>
+‏                </div>
+                
+‏                <span class="text-burgundy-500 text-2xl mt-4 font-bold animate-pulse">:</span>
+                
+                <!-- الدقائق -->
+‏                <div class="flex flex-col items-center">
+‏                    <div class="w-14 h-16 md:w-16 md:h-20 bg-obsidian-light border border-gold-700/50 rounded-lg flex items-center justify-center shadow-inner relative overflow-hidden">
+‏                        <div class="absolute top-0 left-0 w-full h-1/2 bg-white/5 border-b border-white/5"></div>
+‏                        <span id="minutes" class="text-2xl md:text-3xl font-bold text-gold-300 font-cairo z-10">00</span>
+‏                    </div>
+‏                    <span class="text-xs text-gray-400 mt-2 font-cairo font-semibold">دقيقة</span>
+‏                </div>
+                
+‏                <span class="text-burgundy-500 text-2xl mt-4 font-bold animate-pulse">:</span>
+                
+                <!-- الثواني -->
+‏                <div class="flex flex-col items-center">
+‏                    <div class="w-14 h-16 md:w-16 md:h-20 bg-obsidian-light border border-gold-700/50 rounded-lg flex items-center justify-center shadow-inner relative overflow-hidden">
+‏                        <div class="absolute top-0 left-0 w-full h-1/2 bg-white/5 border-b border-white/5"></div>
+‏                        <span id="seconds" class="text-2xl md:text-3xl font-bold text-burgundy-500 font-cairo z-10">00</span>
+‏                    </div>
+‏                    <span class="text-xs text-gray-400 mt-2 font-cairo font-semibold">ثانية</span>
+‏                </div>
+‏            </div>
+‏        </section>
+
+        <!-- الخاتمة من الصورة -->
+‏        <section class="text-center reveal-element mt-4 mb-8">
+‏            <p class="font-amiri text-2xl text-gold-300 mb-2">حضوركم يزيد فرحتنا ويكمل سعادتنا</p>
+‏            <div class="text-burgundy-500 my-3"><i class="fa-solid fa-heart text-sm"></i></div>
+‏            <p class="font-amiri text-xl text-gold-500 font-bold text-glow-gold">ننتظركم لنشارككم أجمل اللحظات</p>
+‏        </section>
+
+‏    </main>
+
+‏    <button id="music-toggle" class="music-float-btn hidden" onclick="toggleAudio()">
+‏        <i class="fa-solid fa-music text-gold-400 text-xl"></i>
+‏    </button>
+    
+    <!-- موسيقى كلاسيكية هادئة وفخمة تناسب الثيم الملكي -->
+‏    <audio id="bg-audio" loop preload="auto">
+‏        <source src="https://cdn.pixabay.com/download/audio/2022/01/21/audio_31743c58bb.mp3?filename=piano-moment-9835.mp3" type="audio/mpeg">
+‏    </audio>
+
+‏    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+‏    <script>
+        // --- 1. إعداد تأثير الجزيئات الذهبية (Particles) ---
+‏        function initParticles() {
+‏            particlesJS("particles-js", {
+‏                "particles": {
+‏                    "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+‏                    "color": { "value": "#D4AF37" }, // لون ذهبي
+‏                    "shape": { "type": "circle" },
+‏                    "opacity": { 
+‏                        "value": 0.5, 
+‏                        "random": true, 
+‏                        "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } 
+                    },
+‏                    "size": { 
+‏                        "value": 3, 
+‏                        "random": true, 
+‏                        "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } 
+                    },
+‏                    "line_linked": { "enable": false }, // بدون خطوط، فقط جزيئات متطايرة مثل الغبار
+‏                    "move": { 
+‏                        "enable": true, 
+‏                        "speed": 1, 
+‏                        "direction": "top", // تتطاير للأعلى
+‏                        "random": true, 
+‏                        "straight": false, 
+‏                        "out_mode": "out", 
+‏                        "bounce": false, 
+                    }
+                },
+‏                "interactivity": {
+‏                    "detect_on": "canvas",
+‏                    "events": { "onhover": { "enable": false }, "onclick": { "enable": false }, "resize": true }
+                },
+‏                "retina_detect": true
+            });
+        }
+
+        // --- 2. دالة فتح الدعوة (الأنيميشن الافتتاحي) ---
+‏        function openInvitation() {
+‏            const splashScreen = document.getElementById('splash-screen');
+‏            const mainContent = document.getElementById('main-content');
+‏            const musicBtn = document.getElementById('music-toggle');
+            
+            // رفع شاشة البداية للأعلى بحركة سينمائية
+‏            splashScreen.style.transform = 'translateY(-100vh)';
+            
+            // تشغيل الموسيقى
+‏            toggleAudio(true);
+            
+            // إظهار المحتوى الرئيسي والجزيئات
+‏            setTimeout(() => {
+‏                splashScreen.style.display = 'none';
+‏                mainContent.style.display = 'flex';
+‏                musicBtn.style.display = 'flex';
+                
+                // تهيئة الجزيئات الذهبية
+‏                initParticles();
+                
+                // تطبيق حركة الظهور التدريجي (Fade In)
+‏                requestAnimationFrame(() => {
+‏                    mainContent.classList.remove('opacity-0');
+‏                    mainContent.classList.add('animate-fadeIn');
+‏                    initScrollReveal(); // تفعيل ظهور البطاقات عند التمرير
+                });
+            }, 1000); // يتزامن مع مدة انتقال شاشة البداية
+        }
+
+        // --- 3. تأثير ظهور البطاقات عند التمرير للأسفل ---
+‏        function initScrollReveal() {
+‏            const reveals = document.querySelectorAll('.reveal-element');
+            
+‏            const observer = new IntersectionObserver((entries) => {
+‏                entries.forEach((entry, index) => {
+‏                    if (entry.isIntersecting) {
+                        // إضافة تأخير بسيط متسلسل للبطاقات لتعطي تأثيراً جميلاً
+‏                        setTimeout(() => {
+‏                            entry.target.classList.add('active');
+‏                        }, index * 150);
+‏                        observer.unobserve(entry.target); // إيقاف المراقبة بعد الظهور الأول
+                    }
+                });
+            }, {
+‏                rootMargin: '0px 0px -50px 0px',
+‏                threshold: 0.1
+            });
+
+‏            reveals.forEach(reveal => observer.observe(reveal));
+        }
+
+        // --- 4. منطق التحكم بالموسيقى ---
+‏        const audio = document.getElementById('bg-audio');
+‏        const musicBtn = document.getElementById('music-toggle');
+‏        let isPlaying = false;
+
+‏        function toggleAudio(forcePlay = false) {
+‏            if (forcePlay || !isPlaying) {
+‏                audio.play().then(() => {
+‏                    isPlaying = true;
+‏                    musicBtn.classList.add('playing');
+‏                    musicBtn.innerHTML = '<i class="fa-solid fa-volume-high text-gold-400 text-xl"></i>';
+‏                    musicBtn.style.borderColor = '#D4AF37';
+‏                }).catch(err => {
+‏                    console.log("Auto-play prevented by browser", err);
+‏                    isPlaying = false;
+                });
+‏            } else {
+‏                audio.pause();
+‏                isPlaying = false;
+‏                musicBtn.classList.remove('playing');
+‏                musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark text-gray-500 text-xl"></i>';
+‏                musicBtn.style.borderColor = '#666';
+            }
+        }
+
+        // --- 5. العداد التنازلي دقيق لتاريخ الزفاف (27 سبتمبر 2026 الساعة 4:00 مساءً) ---
+        // بناءً على سياق النظام، تم تحديد التاريخ بدقة
+‏        const targetDate = new Date('September 27, 2026 16:00:00').getTime();
+
+‏        const updateCountdown = () => {
+‏            const now = new Date().getTime();
+‏            const distance = targetDate - now;
+
+‏            if (distance < 0) {
+                // إذا حان الموعد أو انقضى
+‏                document.getElementById('days').innerText = '00';
+‏                document.getElementById('hours').innerText = '00';
+‏                document.getElementById('minutes').innerText = '00';
+‏                document.getElementById('seconds').innerText = '00';
+‏                return;
+            }
+
+‏            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+‏            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+‏            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+‏            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // إضافة صفر على اليسار للأرقام الفردية
+‏            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+‏            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+‏            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+‏            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        };
+
+        // تحديث العداد كل ثانية
+‏        setInterval(updateCountdown, 1000);
+‏        updateCountdown(); // استدعاء أولي لتجنب التأخير لثانية واحدة
+‏    </script>
+‏</body>
+‏</html>
